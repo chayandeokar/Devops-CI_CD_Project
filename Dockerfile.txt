@@ -1,0 +1,16 @@
+FROM tomcat:8
+
+# Download a fresh Tomcat 8 distribution
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Clone the repository to the container
+RUN git clone https://github.com/example/sparkjava-hello-world.git /usr/local/tomcat/webapps/sparkjava-hello-world
+
+# Build the project
+RUN mvn -f /usr/local/tomcat/webapps/sparkjava-hello-world/pom.xml package
+
+# Copy the generated war to the webapps folder
+RUN cp /usr/local/tomcat/webapps/sparkjava-hello-world/target/sparkjava-hello-world-1.0.war /usr/local/tomcat/webapps/sparkjava-hello-world.war
+
+# Start Tomcat
+CMD ["catalina.sh", "run"]

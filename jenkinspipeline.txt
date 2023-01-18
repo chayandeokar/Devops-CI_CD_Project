@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM 'H/5 * * * *'
+    }
+    stages {
+        stage('Pull') {
+            steps {
+                git 'https://github.com/TeamAaptatt/Aaptatt-hiring-assignment.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+        stage('Docker Build and Push') {
+            steps {
+                sh 'docker build -t chayandeokar/mavenproject .' ##Dockerfile
+                sh 'docker push chayandeokar/mavenproject'
+            }
+        }
+        stage('Deploy and Expose') {
+            steps {
+                sh 'docker run -d -p 80:8080 chayandeokar/mavenproject'
+                sh 'sudo apt-get install nginx -y'
+                sh 'sudo systemctl start nginx'
+                sh 'sudo rm /etc/nginx/sites-available/default'
+                sh 'sudo touch /etc/nginx/sites-available/default'
+                sh 'sudo echo "server { listen 80; location / { proxy_pass http://localhost:8080; } }" >> /etc/nginx/sites-available/default'
+                sh 'sudo systemctl restart nginx'
+            }
+        }
+    }
+}

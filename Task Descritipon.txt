@@ -1,0 +1,18 @@
+Instructions:
+1. Clone the code from the provided** git repository to your local repository and perform the assignment.
+3. After completion of your assignment add our team member as the collaborator of your repository. github-id: TeamAaptatt
+
+Description:
+
+Write a pipeline as code in jenkins or gitlab that performs the following the tasks:
+
+Any changes made in the source code,the pipeline should trigger automatically and perform following actions,
+
+1. Pull the maven project from the git repository.
+2. Build the maven project.[It will generate a war file]
+3. Use the dockerfile to build a new image and push the image to dockerhub[you can create and use your personal dockerhub account].
+4. Deploy the application inside the VM using the image created.
+5. Expose the application deployed on port 80 and perform reverse proxy using nginx.
+
+
+Hint: The Dockerfile can be created based on the project execution instructions given in the README.md

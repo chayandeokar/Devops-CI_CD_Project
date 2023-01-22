@@ -8,22 +8,22 @@ Build war with maven and sparkjava framework
 Steps:
 
 
-Download a fresh Tomcat 8 distribution
+1. Download a fresh Tomcat 8 distribution
 
 
-Clone this repository to your local machine
+2. Clone this repository to your local machine
 
 
-Run mvn package
+3. Run mvn package
 
 
-Copy the generated sparkjava-hello-world-1.0.war to the Tomcat webapps folder
+4. Copy the generated sparkjava-hello-world-1.0.war to the Tomcat webapps folder
 
 
-Start Tomcat by running bin\startup.bat (or bin/startaup.sh for Linux)
+5. Start Tomcat by running bin\startup.bat (or bin/startaup.sh for Linux)
 
 
-Tomcat will automatically deploy the war
+6. Tomcat will automatically deploy the war
 
 
-Open [http://localhost:8080/sparkjava-hello-world-1.0/aaptatt] in your browser
+7. Open [http://localhost:8080/sparkjava-hello-world-1.0/aaptatt] in your browser
